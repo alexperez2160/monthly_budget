@@ -88,7 +88,7 @@ post "/update" do
   
   @file_path = File.join(data_path, "users.yml")
   File.open(@file_path, 'w') { |f| YAML.dump(@credentials, f) }
-  
+  session[:success] = "Your income and expenses have been updated"
   redirect "/"
   
 end 

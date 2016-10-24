@@ -3,6 +3,7 @@ ENV["RACK_ENV"] = "test"
 require "minitest/autorun"
 require "rack/test"
 require "fileutils"
+require "bcrypt"
 
 require_relative "../budget"
 
@@ -16,6 +17,10 @@ class AppTest < Minitest::Test
   def session
   	last_request.env["rack.session"]
   end
+  
+  def admin_session
+  	{ "rack.session" => { username: "admin" } }
+	end
 
 	def test_index
 	  get "/"
@@ -48,4 +53,22 @@ class AppTest < Minitest::Test
     get last_response["Location"]
     assert_includes last_response.body, "signed out" 
   end 
+  
+  def test_edit
+    get "/edit"
+    
+    assert_equal 200, last_response.status
+    assert_includes last_response.body, "Submit"
+  end 
+  
+  def test_submit_edits
+    post "/update"
+    
+    
+    assert_equal 302, last_response.status
+    get last_response["Location"]
+    assert_includes last_response.body, "500"
+    
+  end 
+    
 end 
