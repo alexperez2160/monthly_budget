@@ -1,0 +1,9 @@
+---
+- username: "ale"
+  password: "$2a$10$IJK3Hvo7GagJW9BX1QHpfua6Y0TIfruzxMQD1BI11Qjgy6aKxe1Y6"
+  income: 100
+  expenses: 50 
+- username: "shree"
+  password: "$2a$10$kTysfVEhKal9o1qv6Wf6uePtT2LEgls132aFhuARqIw54Q8kjkpTK"
+  income: 500
+  expenses: 10 

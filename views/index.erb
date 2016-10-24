@@ -1,0 +1,29 @@
+<% if session[:success] %> 
+<p class = "flash"> <%= session.delete(:success) %> </p>
+<% end %> 
+
+<p> Welcome to your budget homepage </p>
+
+<% if session[:user] %>
+<p> Hello <%=session[:user]%> </p>
+<p> Below are you income and expenses</p>
+<ul>
+<li> Income: <%= session[:income] %> </li>
+<li> Expenses: <%= session[:expense] %> </li>
+<li> Net: <%= session[:income] - session[:expense] %> </li>
+</ul>
+<form method="get" action="/edit">
+	<button type ="submit"> Edit </button>
+</form>
+<% end %> 
+
+<% if session[:user] %> 
+	<form method="post" action="/user/signout">
+		<button type="submit">Sign Out</button>
+  </form>
+<% else %> 
+	<form method="get" action="/user/signin">
+		<button type="submit">Sign In</button>
+  </form>
+<% end %> 
+
